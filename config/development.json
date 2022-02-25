@@ -1,0 +1,11 @@
+{
+    "token": "TOKEN_DEV",
+    "mongodbURI": "MONGODB_LOCALHOST",
+    "nodes": [
+        {
+            "host": "LAVALINK_HOST",
+            "port": "LAVALINK_PORT",
+            "password": "LAVALINK_PASSWORD"
+        }
+    ]
+}

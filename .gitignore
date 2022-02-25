@@ -57,4 +57,7 @@ template.config.js
 push.bat
 push.sh
 
+
+# lavalink server
+server
         
