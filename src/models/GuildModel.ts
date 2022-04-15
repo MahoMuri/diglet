@@ -25,10 +25,6 @@ const GuildSchema = new Schema<GuildConfig>({
         type: SchemaTypes.Map,
         default: null,
     },
-    mutes: {
-        type: SchemaTypes.Map,
-        default: null,
-    },
 });
 
 export default model<GuildConfig>("guildconfigs", GuildSchema);

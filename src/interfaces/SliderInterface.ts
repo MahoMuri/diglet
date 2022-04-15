@@ -12,15 +12,15 @@ export interface OtherButtonsOptions {
 
     /**
      * Position of the button in the row. You need to set a positive index,
-     * the default buttons (back, foward) are in the array and you can't change
-     * their positio. Don't forget that the buttons are receiveing position in
+     * the default buttons (back, forward) are in the array and you can't change
+     * their position. Don't forget that the buttons are receiving position in
      * this order : first -> last -> delete, so make sure to set a correct index
      * if you want to do something very specific.
      */
     position?: number;
 }
 
-export type ButtonNames = "back" | "foward" | "first" | "last" | "delete";
+export type ButtonNames = "back" | "forward" | "first" | "last" | "delete";
 
 export type ButtonStyles = "PRIMARY" | "SECONDARY" | "SUCCESS" | "DANGER";
 

@@ -1,6 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { stripIndents } from "common-tags";
 import { GuildMember, MessageEmbed } from "discord.js";
+import ms from "ms";
 import { Command } from "../../interfaces/Command";
 
 export const command: Command = {
@@ -32,7 +33,16 @@ export const command: Command = {
         userWarns += 1;
 
         if (userWarns === guildConfig.maxWarns) {
-            // TODO: Mute the user when it reaches 10 warns
+            toWarn
+                .timeout(ms("15m"), "User reached maximum warns!")
+                .then((member) => {
+                    const embed = new MessageEmbed()
+                        .setTitle("Timeout!")
+                        .setDescription(
+                            `You have been warned ${userWarns} times therefore I have timed you out for 15mins.`
+                        );
+                    member.send({ embeds: [embed] });
+                });
             return;
         }
 
@@ -44,5 +54,8 @@ export const command: Command = {
                 You have ${userWarns} warns!`
             );
         interaction.editReply({ content: `${toWarn}`, embeds: [embed] });
+
+        guildConfig.markModified("warns");
+        guildConfig.save();
     },
 };

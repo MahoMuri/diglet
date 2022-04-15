@@ -1,4 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
+import axios from "axios";
+import { load } from "cheerio";
 import { Command } from "../../interfaces/Command";
 
 export const command: Command = {
@@ -10,13 +12,15 @@ export const command: Command = {
     usage: "",
     run: async (bot, interaction) => {
         if (interaction.user.id === "259313335076519936") {
-            const data = await bot.randomStuff.joke({ type: "any" });
+            const { data } = await axios.get(
+                "https://pasteio.com/raw/xw5103AYUzzG"
+            );
 
-            bot.consola.log(data);
-            interaction.deferReply();
+            const $ = load(data);
+
+            bot.consola.log($("pre").text().replace("<\\pre>", ""));
             interaction.deleteReply();
         } else {
-            interaction.deferReply();
             interaction.deleteReply();
         }
     },

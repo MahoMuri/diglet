@@ -64,7 +64,7 @@ export const command: Command = {
                                     .setColor(bot.colors.GREEN_MUNSEL)
                                     .setDescription(
                                         stripIndents`${bannedMember} was successfully banned!
-                                    I am deleting thier messages from a few days ago.`
+                                    I am deleting their messages from a few days ago.`
                                     )
                                     .setFooter({
                                         text: "I hope you know what you're doing...",
@@ -80,7 +80,7 @@ export const command: Command = {
                                     .setColor(bot.colors.UPSDELL_RED)
                                     .setDescription(
                                         stripIndents`Ban attempt for ${toBan} has failed!
-                                        Kindly contact tech support for assitance.`
+                                        Kindly contact tech support for assistance.`
                                     )
                                     .setFooter({
                                         text: "I hope you know what you're doing...",

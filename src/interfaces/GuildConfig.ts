@@ -4,5 +4,4 @@ export interface GuildConfig {
     voiceChannel: string;
     maxWarns: number;
     warns: Map<string, number>;
-    mutes: Map<string, number>;
 }

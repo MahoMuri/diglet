@@ -1,7 +1,9 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
+import axios from "axios";
 import { stripIndents } from "common-tags";
 import { ChannelType } from "discord-api-types/v9";
-import { MessageEmbed, TextChannel } from "discord.js";
+import { load } from "cheerio";
+import { MessageEmbed, MessageEmbedOptions, TextChannel } from "discord.js";
 import { Command } from "../../interfaces/Command";
 
 export const command: Command = {
@@ -38,38 +40,62 @@ export const command: Command = {
                 .setDescription(
                     stripIndents`Click [this link](https://glitchii.github.io/embedbuilder/) to got to the online embed builder.
                     
-                    Once you're there, edit the embed as you see fit. When you're done click on the 3 dots on the upper right and click **Get data link**
+                    Once you're there, edit the embed as you see fit. When you're done click on the copy button and paste the data on [pasteio](https://pasteio.com).
 
-                    Copy the entire thing then type \`/embed <URL> [channel]\` in the channel you wish to send the embed you made. Or you can optionally add the channel
+                    Click on the submit button then copy the URL. On Discord, type \`/embed <URL> [channel]\` in the channel you wish to send the embed you made. Or you can optionally add the channel
                     to where I would send the embed`
                 );
             interaction.editReply({ embeds: [embed] });
             return;
         }
 
-        const parsedURL = new URL(url);
+        try {
+            const parsedURL = new URL(url);
+            let json: MessageEmbedOptions;
 
-        const base64 = parsedURL.searchParams.get("data");
+            if (parsedURL.hostname === "pasteio.com") {
+                const { data } = await axios.get(
+                    `https://pasteio.com/raw${parsedURL.pathname}`
+                );
 
-        const json = JSON.parse(
-            decodeURIComponent(Buffer.from(base64, "base64").toString())
-        );
+                const $ = load(data);
+                json = JSON.parse($("pre").text().replace("<\\pre>", "")).embed;
 
-        const embed = new MessageEmbed(json.embed);
+                const embed = new MessageEmbed(json);
 
-        channel
-            .send({ embeds: [embed] })
-            .then(() => {
-                interaction.editReply("**Embed successfully sent!**");
-            })
-            .catch((err) => {
-                const errEmbed = new MessageEmbed()
+                channel
+                    .send({ embeds: [embed] })
+                    .then(() => {
+                        interaction.editReply("**Embed successfully sent!**");
+                    })
+                    .catch((err) => {
+                        const errEmbed = new MessageEmbed()
+                            .setColor(bot.colors.UPSDELL_RED)
+                            .setDescription(
+                                `❌ **An Error Occurred while processing this command! Please try again or contact a developer about this.**`
+                            );
+                        interaction.editReply({ embeds: [errEmbed] });
+                        bot.consola.error(err);
+                    });
+            } else {
+                const embed = new MessageEmbed()
+                    .setTitle("Wrong link!")
                     .setColor(bot.colors.UPSDELL_RED)
                     .setDescription(
-                        `❌ **An Error Occured while processing this command! Please try again or contact a developer about this.**`
+                        "Please use [pasteio](http://pasteio.com) as the paste editor."
                     );
-                interaction.editReply({ embeds: [errEmbed] });
-                bot.consola.error(err);
-            });
+
+                interaction.editReply({ embeds: [embed] });
+            }
+        } catch (error) {
+            const embed = new MessageEmbed()
+                .setTitle("Not a link!")
+                .setColor(bot.colors.UPSDELL_RED)
+                .setDescription(
+                    `I'm sorry but you didn't provide a valid link!`
+                );
+
+            interaction.editReply({ embeds: [embed] });
+        }
     },
 };

@@ -38,14 +38,14 @@ export class Utilities {
     }
 
     static async promptMessage(message: Message, author: User, time: number) {
-        // We put in the time as seconds, with this it's being transfered to MS
+        // We put in the time as seconds, with this it's being transferred to MS
         time *= 1000;
         // Only allow reactions from the author,
         // and the emoji must be in the array we provided.
         const filter = (interaction: Interaction) =>
             interaction.user.id === author.id;
 
-        // And ofcourse, await the reactions
+        // And of course, await the reactions
         const buttons = message
             .awaitMessageComponent({
                 filter,
@@ -125,7 +125,7 @@ export class Utilities {
         };
 
         const createButtons = (state?: boolean) => {
-            const names: ButtonNames[] = ["back", "foward"];
+            const names: ButtonNames[] = ["back", "forward"];
             if (otherButtons.firstButton.enabled) {
                 if (otherButtons.firstButton.position >= 0) {
                     names.splice(otherButtons.firstButton.position, 0, "first");
@@ -224,7 +224,7 @@ export class Utilities {
                 }
                 currentPage -= 1;
             }
-            if (id === "foward") {
+            if (id === "forward") {
                 if (currentPage === embeds.length) {
                     currentPage = 1;
                     editEmbed(intractn, currentPage - 1);

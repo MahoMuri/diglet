@@ -160,7 +160,7 @@ export const command: Command = {
                 },
                 buttons: [
                     { name: "first", emoji: "⏮", style: "SECONDARY" },
-                    { name: "foward", emoji: "▶", style: "PRIMARY" },
+                    { name: "forward", emoji: "▶", style: "PRIMARY" },
                     { name: "delete", emoji: "🗑", style: "DANGER" },
                     { name: "back", emoji: "◀", style: "PRIMARY" },
                     { name: "last", emoji: "⏭", style: "SECONDARY" },

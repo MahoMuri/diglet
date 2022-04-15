@@ -27,7 +27,7 @@ export const command: Command = {
                 .toJSON()
                 .join(",\n") || "None";
 
-        const active = member.presence.activities.length > 0;
+        const active = member.presence?.activities.length > 0;
         const embed = new MessageEmbed()
             .setAuthor({
                 name: `${member.displayName}'s Info`,
