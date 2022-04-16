@@ -10,12 +10,10 @@ const GuildSchema = new Schema<GuildConfig>({
     textChannel: {
         type: String,
         default: null,
-        required: true,
     },
     voiceChannel: {
         type: String,
         default: null,
-        required: true,
     },
     maxWarns: {
         type: Number,
