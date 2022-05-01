@@ -9,11 +9,11 @@ const GuildSchema = new Schema<GuildConfig>({
     },
     textChannel: {
         type: String,
-        default: null,
+        default: "",
     },
     voiceChannel: {
         type: String,
-        default: null,
+        default: "",
     },
     maxWarns: {
         type: Number,
@@ -21,7 +21,7 @@ const GuildSchema = new Schema<GuildConfig>({
     },
     warns: {
         type: SchemaTypes.Map,
-        default: null,
+        default: new Map(),
     },
 });
 

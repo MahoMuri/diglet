@@ -3,6 +3,7 @@ import { Routes } from "discord-api-types/v9";
 import { readdirSync } from "fs";
 import path from "path";
 import { Event } from "../interfaces/Event";
+import GuildModel from "../models/GuildModel";
 
 export const event: Event = {
     name: "ready",
@@ -33,33 +34,50 @@ export const event: Event = {
             });
         });
 
+        try {
+            const guildCache = bot.guilds.cache.map(async (guild) => {
+                const guildId = guild.id;
+                let guildSettings = await GuildModel.findOne({
+                    guildId,
+                });
+
+                if (!guildSettings) {
+                    try {
+                        guildSettings = await GuildModel.create({
+                            guildId,
+                        });
+
+                        bot.consola.success(`Joined ${guild.name}!`);
+                    } catch (error) {
+                        bot.consola.error(error);
+                    }
+                }
+
+                if (guildSettings) {
+                    bot.cache.guildConfigs.set(guildId, guildSettings);
+                }
+            });
+
+            await Promise.all([guildCache].map(Promise.all.bind(Promise)));
+        } catch (error) {
+            bot.consola.error(error);
+        }
+
+        // Slash command registration
         const TOKEN = bot.config.token;
         const rest = new REST({ version: "9" }).setToken(TOKEN);
 
         try {
             bot.consola.info("Started loading slash commands...");
-
-            if (bot.config.mode === "production") {
-                await rest.put(Routes.applicationCommands(clientId), {
+            await rest.put(
+                Routes.applicationGuildCommands(clientId, process.env.GUILD_ID),
+                {
                     body: commands,
-                });
-                bot.consola.info("==================================");
-                bot.consola.success("Application slash commands loaded!");
-                bot.consola.info("==================================");
-            } else if (bot.config.mode === "development") {
-                await rest.put(
-                    Routes.applicationGuildCommands(
-                        clientId,
-                        process.env.GUILD_ID
-                    ),
-                    {
-                        body: commands,
-                    }
-                );
-                bot.consola.info("============================");
-                bot.consola.success("Guild slash commands loaded!");
-                bot.consola.info("============================");
-            }
+                }
+            );
+            bot.consola.info("============================");
+            bot.consola.success("Guild slash commands loaded!");
+            bot.consola.info("============================");
         } catch (error) {
             bot.consola.error(error);
         }

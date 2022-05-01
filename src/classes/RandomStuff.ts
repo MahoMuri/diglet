@@ -1,158 +1,125 @@
 import axios, { AxiosInstance } from "axios";
 import { Bot } from "../client";
 
-interface JokeOptions {
-    type: string;
-    blacklist?: string;
-}
-
 interface AnimeOptions {
-    type:
+    query:
+        | "alarm"
+        | "amazing"
+        | "ask"
+        | "baka"
+        | "bite"
+        | "blush"
+        | "blyat"
+        | "boop"
+        | "clap"
+        | "coffee"
+        | "confused"
+        | "cry"
+        | "cuddle"
+        | "cute"
+        | "dance"
+        | "destroy"
+        | "die"
+        | "disappear"
+        | "dodge"
+        | "error"
+        | "facedesk"
+        | "facepalm"
+        | "fbi"
+        | "fight"
         | "happy"
-        | "hi"
-        | "kiss"
+        | "hide"
+        | "highfive"
         | "hug"
-        | "punch"
+        | "kill"
+        | "kiss"
+        | "laugh"
+        | "lick"
+        | "lonely"
+        | "love"
+        | "mad"
+        | "money"
+        | "nom"
+        | "nosebleed"
+        | "ok"
+        | "party"
         | "pat"
-        | "slap"
-        | "nervous"
+        | "peek"
+        | "poke"
+        | "pout"
+        | "protect"
+        | "puke"
+        | "punch"
+        | "purr"
+        | "pusheen"
         | "run"
-        | "cry";
-    limit: number;
-}
-
-interface AnimalOptions {
-    type: "dog" | "cat" | "wolf" | "fox";
-    limit: number;
+        | "salute"
+        | "scared"
+        | "scream"
+        | "shame"
+        | "shocked"
+        | "shoot"
+        | "shrug"
+        | "sip"
+        | "sit"
+        | "slap"
+        | "sleepy"
+        | "smile"
+        | "smoke"
+        | "smug"
+        | "spin"
+        | "stare"
+        | "stomp"
+        | "tickle"
+        | "trap"
+        | "triggered"
+        | "uwu"
+        | "wasted"
+        | "wave"
+        | "wiggle"
+        | "wink"
+        | "yeet";
 }
 
 interface NekosLifeOptions {
     type:
-        | "solog"
-        | "smug"
-        | "feet"
-        | "smallboobs"
-        | "lewdkemo"
-        | "woof"
-        | "gasm"
-        | "solo"
-        | "8ball"
-        | "goose"
-        | "cuddle"
-        | "avatar"
-        | "cum"
-        | "slap"
-        | "les"
-        | "v3"
-        | "erokemo"
+        | "4k"
+        | "ass"
         | "bj"
-        | "pwankg"
-        | "nekoapi_v3.1"
-        | "ero"
-        | "hololewd"
-        | "pat"
-        | "gecg"
-        | "holo"
-        | "poke"
-        | "feed"
-        | "fox_girl"
-        | "tits"
-        | "nsfw_neko_gif"
-        | "eroyuri"
-        | "holoero"
-        | "pussy"
-        | "Random_hentai_gif"
-        | "lizard"
-        | "yuri"
-        | "keta"
-        | "neko"
+        | "cum"
+        | "feet"
         | "hentai"
-        | "feetg"
-        | "eron"
-        | "erok"
-        | "baka"
-        | "kemonomimi"
-        | "hug"
-        | "cum_jpg"
-        | "nsfw_avatar"
-        | "erofeet"
-        | "meow"
-        | "kiss"
-        | "wallpaper"
-        | "tickle"
-        | "blowjob"
+        | "wallpapers"
         | "spank"
-        | "kuni"
-        | "classic"
-        | "waifu"
-        | "femdom"
-        | "boobs"
-        | "trap"
+        | "gasm"
+        | "lesbian"
         | "lewd"
-        | "pussy_jpg"
-        | "anal"
-        | "futanari"
-        | "ngif"
-        | "lewdk";
+        | "pussy"
+        | "boobs";
 }
 
 export class RandomStuff {
     public bot: Bot;
 
-    private randStuffInstance: AxiosInstance;
-
     private nekosInstance: AxiosInstance;
+
+    private kawaiiInstance: AxiosInstance;
 
     constructor(bot: Bot) {
         this.bot = bot;
 
-        this.randStuffInstance = axios.create({
-            baseURL: "https://random-stuff-api.p.rapidapi.com",
-            headers: {
-                authorization: process.env.RS_AUTH,
-                "x-rapidapi-host": "random-stuff-api.p.rapidapi.com",
-                "x-rapidapi-key": process.env.RAPID_API_KEY,
-            },
-        });
-
         this.nekosInstance = axios.create({
-            baseURL: "https://nekos.life/api/v2",
-        });
-    }
-
-    async joke(options: JokeOptions) {
-        const response = await this.randStuffInstance.get("/joke", {
-            params: options,
+            baseURL: "http://api.nekos.fun:8080/api",
         });
 
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-
-        return response.data;
+        this.kawaiiInstance = axios.create({
+            baseURL: "https://kawaii.red/api/gif",
+        });
     }
 
     async anime(options: AnimeOptions) {
-        const response = await this.randStuffInstance.get(
-            `/anime/${options.type}`,
-            {
-                params: { limit: options.limit },
-            }
-        );
-
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-
-        return response.data;
-    }
-
-    async animal(options: AnimalOptions) {
-        const response = await this.randStuffInstance.get(
-            `/animal/${options.type}`,
-            {
-                params: { limit: options.limit },
-            }
+        const response = await this.kawaiiInstance.get(
+            `/${options.query}/token=${process.env.KAWAII_TOKEN}`
         );
 
         if (response.status !== 200) {
@@ -163,7 +130,7 @@ export class RandomStuff {
     }
 
     async nekos(options: NekosLifeOptions) {
-        const { data } = await this.nekosInstance(`/img/${options.type}`);
+        const { data } = await this.nekosInstance(`/${options.type}`);
 
         return data;
     }

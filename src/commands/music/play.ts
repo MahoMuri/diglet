@@ -44,7 +44,7 @@ export const command: Command = {
             bot.clients.set(guildId, client);
         }
 
-        if (client.player.playing) {
+        if (client.player.voiceChannel !== member.voice.channelId) {
             const embed = new MessageEmbed()
                 .setColor(bot.colors.UPSDELL_RED)
                 .setDescription("❌ **I'm being used in a different VC!**");

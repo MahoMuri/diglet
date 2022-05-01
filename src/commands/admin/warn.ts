@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { bold, SlashCommandBuilder } from "@discordjs/builders";
 import { stripIndents } from "common-tags";
 import { GuildMember, MessageEmbed } from "discord.js";
 import ms from "ms";
@@ -16,7 +16,10 @@ export const command: Command = {
                 .setRequired(true)
         )
         .addStringOption((option) =>
-            option.setName("reason").setDescription("The reason for the warn")
+            option
+                .setName("reason")
+                .setDescription("The reason for the warn")
+                .setRequired(true)
         ),
     description: "Warns a user",
     category: "admin",
@@ -30,7 +33,13 @@ export const command: Command = {
 
         let userWarns = guildConfig.warns.get(toWarn.id);
 
-        userWarns += 1;
+        if (!userWarns) {
+            userWarns = 1;
+        } else {
+            userWarns += 1;
+        }
+
+        bot.consola.log(userWarns);
 
         if (userWarns === guildConfig.maxWarns) {
             toWarn
@@ -38,6 +47,7 @@ export const command: Command = {
                 .then((member) => {
                     const embed = new MessageEmbed()
                         .setTitle("Timeout!")
+                        .setColor(bot.colors.UPSDELL_RED)
                         .setDescription(
                             `You have been warned ${userWarns} times therefore I have timed you out for 15mins.`
                         );
@@ -48,13 +58,17 @@ export const command: Command = {
 
         const embed = new MessageEmbed()
             .setTitle("You have been warned!")
+            .setColor(bot.colors.DEEP_SAFFRON)
             .setDescription(
-                stripIndents`${toWarn}, you have been warned for: ${reason}
+                stripIndents`${toWarn}, you have been warned for: ${bold(
+                    reason
+                )}
                 
                 You have ${userWarns} warns!`
             );
         interaction.editReply({ content: `${toWarn}`, embeds: [embed] });
 
+        guildConfig.warns.set(toWarn.id, userWarns);
         guildConfig.markModified("warns");
         guildConfig.save();
     },

@@ -22,8 +22,7 @@ export const command: Command = {
         const member = <GuildMember>interaction.options.getMember("user");
 
         const data = await bot.randomStuff.anime({
-            type: "kiss",
-            limit: 1,
+            query: "kiss",
         });
 
         const embed = new MessageEmbed()
@@ -34,7 +33,7 @@ export const command: Command = {
                 iconURL: author.displayAvatarURL(),
             })
             .setColor(bot.colors.DARK_ELECTRIC_BLUE)
-            .setImage(data[0].url)
+            .setImage(data.response)
             .setFooter({
                 text: `${bot.user.username} | MahoMuri © 2022`,
                 iconURL: bot.user.displayAvatarURL(),

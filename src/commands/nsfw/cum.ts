@@ -4,22 +4,13 @@ import { Command } from "../../interfaces/Command";
 
 export const command: Command = {
     name: "cum",
-    data: new SlashCommandBuilder()
-        .setName("cum")
-        .setDescription("Cum!")
-        .addBooleanOption((option) =>
-            option
-                .setName("gif")
-                .setDescription("Wether to send as a gif or a jpg")
-        ),
+    data: new SlashCommandBuilder().setName("cum").setDescription("Cum!"),
     description: "Cum!",
     category: "nsfw",
     adminOnly: false,
     usage: "/cum",
     run: async (bot, interaction) => {
         const channel = <TextChannel>interaction.channel;
-
-        const isGif = interaction.options.getBoolean("gif");
 
         if (!channel.nsfw) {
             const embed = new MessageEmbed()
@@ -31,13 +22,13 @@ export const command: Command = {
         }
 
         const data = await bot.randomStuff.nekos({
-            type: isGif ? "cum" : "cum_jpg",
+            type: "cum",
         });
 
         const embed = new MessageEmbed()
             .setTitle("Here, have some cum ya filthy cunt.")
             .setColor(bot.colors.RICH_BLACK)
-            .setImage(data.url);
+            .setImage(data.image);
         interaction.editReply({ embeds: [embed] });
     },
 };

@@ -101,6 +101,7 @@ export class MusicClient {
         });
 
         this.erela.on("socketClosed", (player, payload) => {
+            bot.consola.log(payload);
             if (payload.code === 4014 && payload.byRemote) {
                 const textChannel = <TextChannel>(
                     this.bot.channels.cache.get(player.options.textChannel)
@@ -109,6 +110,8 @@ export class MusicClient {
                 const voiceChannel = <VoiceChannel>(
                     this.bot.channels.cache.get(player.options.voiceChannel)
                 );
+
+                player.stop();
 
                 if (!this.leaveMsg) {
                     const embed = new MessageEmbed()

@@ -15,8 +15,7 @@ export const command: Command = {
         const author = <GuildMember>interaction.member;
 
         const data = await bot.randomStuff.anime({
-            type: "happy",
-            limit: 1,
+            query: "happy",
         });
 
         const embed = new MessageEmbed()
@@ -25,7 +24,7 @@ export const command: Command = {
                 iconURL: author.displayAvatarURL(),
             })
             .setColor(bot.colors.STAR_COMMAND_BLUE)
-            .setImage(data[0].url)
+            .setImage(data.response)
             .setFooter({
                 text: `${bot.user.username} | MahoMuri © 2022`,
                 iconURL: bot.user.displayAvatarURL(),

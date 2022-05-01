@@ -676,6 +676,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"anime-wallpaper@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "anime-wallpaper@npm:1.0.2"
+  dependencies:
+    cheerio: ^1.0.0-rc.5
+    node-superfetch: ^0.1.11
+    random-useragent: ^0.5.0
+  checksum: 92c18dec480b05b58e146ca056fc9d7c80b153e3268ef0810abc32580f0f298a8675ee79a682bde90bbe9fd16de31b1968b19e47d73084f47b06cdae395bd800
+  languageName: node
+  linkType: hard
+
 "ansi-escapes@npm:^4.3.0":
   version: 4.3.2
   resolution: "ansi-escapes@npm:4.3.2"
@@ -1033,7 +1044,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cheerio@npm:^1.0.0-rc.10":
+"cheerio@npm:^1.0.0-rc.5":
   version: 1.0.0-rc.10
   resolution: "cheerio@npm:1.0.0-rc.10"
   dependencies:
@@ -1669,9 +1680,9 @@ __metadata:
     "@types/prettier": ^2.6.0
     "@typescript-eslint/eslint-plugin": ^5.19.0
     "@typescript-eslint/parser": ^5.19.0
+    anime-wallpaper: ^1.0.2
     axios: ^0.26.1
     canvas: ^2.9.1
-    cheerio: ^1.0.0-rc.10
     common-tags: ^1.8.2
     consola: ^2.15.3
     discord-api-types: ^0.27.3
@@ -3789,7 +3800,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.5, node-fetch@npm:^2.6.7":
+"node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.5, node-fetch@npm:^2.6.7":
   version: 2.6.7
   resolution: "node-fetch@npm:2.6.7"
   dependencies:
@@ -3834,6 +3845,16 @@ __metadata:
     uuid: ^8.3.2
     which: ^2.0.2
   checksum: ac09456152e433462dd3ca277048de7a60c6d63fc657e00ac72805841baf9bb2573e8d3f64c4b64af73546d1ed39733af6b0036c38b57a83c883aa33fff35a2e
+  languageName: node
+  linkType: hard
+
+"node-superfetch@npm:^0.1.11":
+  version: 0.1.11
+  resolution: "node-superfetch@npm:0.1.11"
+  dependencies:
+    form-data: ^3.0.0
+    node-fetch: ^2.6.0
+  checksum: 6f977f02d5927f389fbee7d0665af7c997a739668174cad6131767fa0492f3100f93800c91328e2bdd3587b981d56012b9d3ef614b6d9aa9f357e0ec18d528f2
   languageName: node
   linkType: hard
 
@@ -4335,6 +4356,24 @@ __metadata:
   version: 4.0.1
   resolution: "quick-lru@npm:4.0.1"
   checksum: bea46e1abfaa07023e047d3cf1716a06172c4947886c053ede5c50321893711577cb6119360f810cc3ffcd70c4d7db4069c3cee876b358ceff8596e062bd1154
+  languageName: node
+  linkType: hard
+
+"random-seed@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "random-seed@npm:0.3.0"
+  dependencies:
+    json-stringify-safe: ^5.0.1
+  checksum: 0a82692fc8d830bc26259dad78a911969343c247afb4be5d578c30fd9fbe76c7ce3f6900422310fc90fe05d6baa12e84a1b9ff93b0b7fda757ecfa40645a1f72
+  languageName: node
+  linkType: hard
+
+"random-useragent@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "random-useragent@npm:0.5.0"
+  dependencies:
+    random-seed: ^0.3.0
+  checksum: 604a7fc63a12b4ef949c67cf0a48b22c55c622da7cc44f80ec7be45164cefcf6f701a5182efbaa6543bd17ce2f653da419f1529d0ba1f2458ee0b1a90fba4cb3
   languageName: node
   linkType: hard
 
@@ -5256,10 +5295,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.1.0, tslib@npm:^2.2.0, tslib@npm:^2.3.1":
+"tslib@npm:^2.1.0, tslib@npm:^2.3.1":
   version: 2.3.1
   resolution: "tslib@npm:2.3.1"
   checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.2.0":
+  version: 2.4.0
+  resolution: "tslib@npm:2.4.0"
+  checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
   languageName: node
   linkType: hard
 

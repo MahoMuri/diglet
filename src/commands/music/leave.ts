@@ -30,7 +30,12 @@ export const command: Command = {
 
         await interaction.deleteReply();
         if (client.player.voiceChannel) {
-            client.player.destroy();
+            client.player.disconnect();
+
+            if (client.player.queue.length > 0 || client.player.queue.current) {
+                client.player.queue.clear();
+            }
+
             client.currentlyPlaying = null;
         } else {
             const embed = new MessageEmbed()

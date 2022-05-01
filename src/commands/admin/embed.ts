@@ -2,7 +2,6 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import axios from "axios";
 import { stripIndents } from "common-tags";
 import { ChannelType } from "discord-api-types/v9";
-import { load } from "cheerio";
 import { MessageEmbed, MessageEmbedOptions, TextChannel } from "discord.js";
 import { Command } from "../../interfaces/Command";
 
@@ -40,7 +39,7 @@ export const command: Command = {
                 .setDescription(
                     stripIndents`Click [this link](https://glitchii.github.io/embedbuilder/) to got to the online embed builder.
                     
-                    Once you're there, edit the embed as you see fit. When you're done click on the copy button and paste the data on [pasteio](https://pasteio.com).
+                    Once you're there, edit the embed as you see fit. When you're done click on the copy button and paste the data on [pastebin](https://pastebin.com).
 
                     Click on the submit button then copy the URL. On Discord, type \`/embed <URL> [channel]\` in the channel you wish to send the embed you made. Or you can optionally add the channel
                     to where I would send the embed`
@@ -53,13 +52,12 @@ export const command: Command = {
             const parsedURL = new URL(url);
             let json: MessageEmbedOptions;
 
-            if (parsedURL.hostname === "pasteio.com") {
+            if (parsedURL.hostname === "pastebin.com") {
                 const { data } = await axios.get(
-                    `https://pasteio.com/raw${parsedURL.pathname}`
+                    `https://pastebin.com/raw${parsedURL.pathname}`
                 );
 
-                const $ = load(data);
-                json = JSON.parse($("pre").text().replace("<\\pre>", "")).embed;
+                json = data.embed;
 
                 const embed = new MessageEmbed(json);
 
@@ -82,17 +80,18 @@ export const command: Command = {
                     .setTitle("Wrong link!")
                     .setColor(bot.colors.UPSDELL_RED)
                     .setDescription(
-                        "Please use [pasteio](http://pasteio.com) as the paste editor."
+                        "Please use [pastebin](http://pastebin.com) as the paste editor."
                     );
 
                 interaction.editReply({ embeds: [embed] });
             }
         } catch (error) {
+            bot.consola.error(error);
             const embed = new MessageEmbed()
-                .setTitle("Not a link!")
+                .setTitle("Something went wrong!")
                 .setColor(bot.colors.UPSDELL_RED)
                 .setDescription(
-                    `I'm sorry but you didn't provide a valid link!`
+                    `I'm sorry but an unexpected error occurred, please contact the server's Tech Support for assistance!`
                 );
 
             interaction.editReply({ embeds: [embed] });

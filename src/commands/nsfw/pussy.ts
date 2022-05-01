@@ -6,20 +6,13 @@ export const command: Command = {
     name: "pussy",
     data: new SlashCommandBuilder()
         .setName("pussy")
-        .setDescription("Have some pussies!")
-        .addBooleanOption((option) =>
-            option
-                .setName("gif")
-                .setDescription("Wether to send as a gif or a jpg")
-        ),
+        .setDescription("Have some pussies!"),
     description: "Have some pussies!",
     category: "nsfw",
     adminOnly: false,
     usage: "/pussy",
     run: async (bot, interaction) => {
         const channel = <TextChannel>interaction.channel;
-
-        const isGif = interaction.options.getBoolean("gif");
 
         if (!channel.nsfw) {
             const embed = new MessageEmbed()
@@ -31,13 +24,13 @@ export const command: Command = {
         }
 
         const data = await bot.randomStuff.nekos({
-            type: isGif ? "pussy" : "pussy_jpg",
+            type: "pussy",
         });
 
         const embed = new MessageEmbed()
             .setTitle("Here, have a pussy ya filthy cunt.")
             .setColor(bot.colors.RICH_BLACK)
-            .setImage(data.url);
+            .setImage(data.image);
         interaction.editReply({ embeds: [embed] });
     },
 };

@@ -24,13 +24,13 @@ export const command: Command = {
         }
 
         const data = await bot.randomStuff.nekos({
-            type: "Random_hentai_gif",
+            type: "hentai",
         });
 
         const embed = new MessageEmbed()
             .setTitle("Here, have some random hentai filthy cunt.")
             .setColor(bot.colors.RICH_BLACK)
-            .setImage(data.url);
+            .setImage(data.image);
         interaction.editReply({ embeds: [embed] });
     },
 };

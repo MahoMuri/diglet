@@ -48,9 +48,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prettier", "npm:2.6.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:3c5762b8147d32c27e0fff44b76dd4ad82ecf13fe27ffa2965d16bd645e4d4ecfd687d3b0b7fd8e336102b9cece69feba896c5ebcf8658668d51920e6ab32f75#npm:5.19.0"],
             ["@typescript-eslint/parser", "virtual:3c5762b8147d32c27e0fff44b76dd4ad82ecf13fe27ffa2965d16bd645e4d4ecfd687d3b0b7fd8e336102b9cece69feba896c5ebcf8658668d51920e6ab32f75#npm:5.19.0"],
+            ["anime-wallpaper", "npm:1.0.2"],
             ["axios", "npm:0.26.1"],
             ["canvas", "npm:2.9.1"],
-            ["cheerio", "npm:1.0.0-rc.10"],
             ["common-tags", "npm:1.8.2"],
             ["consola", "npm:2.15.3"],
             ["discord-api-types", "npm:0.27.3"],
@@ -938,6 +938,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["anime-wallpaper", [
+        ["npm:1.0.2", {
+          "packageLocation": "./.yarn/cache/anime-wallpaper-npm-1.0.2-5faad097a4-92c18dec48.zip/node_modules/anime-wallpaper/",
+          "packageDependencies": [
+            ["anime-wallpaper", "npm:1.0.2"],
+            ["cheerio", "npm:1.0.0-rc.10"],
+            ["node-superfetch", "npm:0.1.11"],
+            ["random-useragent", "npm:0.5.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["ansi-escapes", [
         ["npm:4.3.2", {
           "packageLocation": "./.yarn/cache/ansi-escapes-npm-4.3.2-3ad173702f-93111c4218.zip/node_modules/ansi-escapes/",
@@ -1337,7 +1349,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["htmlparser2", "npm:6.1.0"],
             ["parse5", "npm:6.0.1"],
             ["parse5-htmlparser2-tree-adapter", "npm:6.0.1"],
-            ["tslib", "npm:2.3.1"]
+            ["tslib", "npm:2.4.0"]
           ],
           "linkType": "HARD",
         }]
@@ -2095,9 +2107,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prettier", "npm:2.6.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:3c5762b8147d32c27e0fff44b76dd4ad82ecf13fe27ffa2965d16bd645e4d4ecfd687d3b0b7fd8e336102b9cece69feba896c5ebcf8658668d51920e6ab32f75#npm:5.19.0"],
             ["@typescript-eslint/parser", "virtual:3c5762b8147d32c27e0fff44b76dd4ad82ecf13fe27ffa2965d16bd645e4d4ecfd687d3b0b7fd8e336102b9cece69feba896c5ebcf8658668d51920e6ab32f75#npm:5.19.0"],
+            ["anime-wallpaper", "npm:1.0.2"],
             ["axios", "npm:0.26.1"],
             ["canvas", "npm:2.9.1"],
-            ["cheerio", "npm:1.0.0-rc.10"],
             ["common-tags", "npm:1.8.2"],
             ["consola", "npm:2.15.3"],
             ["discord-api-types", "npm:0.27.3"],
@@ -4600,6 +4612,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["node-superfetch", [
+        ["npm:0.1.11", {
+          "packageLocation": "./.yarn/cache/node-superfetch-npm-0.1.11-cc5a25f40e-6f977f02d5.zip/node_modules/node-superfetch/",
+          "packageDependencies": [
+            ["node-superfetch", "npm:0.1.11"],
+            ["form-data", "npm:3.0.1"],
+            ["node-fetch", "virtual:d8202ef0a7671a0948d641e25f277209e20333315b4b0efeecfbecf181cc8f290125477400cd84db859872df985a96987b7734512ea68007c0c0870f82d178e5#npm:2.6.7"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["nopt", [
         ["npm:5.0.0", {
           "packageLocation": "./.yarn/cache/nopt-npm-5.0.0-304b40fbfe-d35fdec187.zip/node_modules/nopt/",
@@ -5165,6 +5188,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/quick-lru-npm-4.0.1-ef8aa17c9c-bea46e1abf.zip/node_modules/quick-lru/",
           "packageDependencies": [
             ["quick-lru", "npm:4.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["random-seed", [
+        ["npm:0.3.0", {
+          "packageLocation": "./.yarn/cache/random-seed-npm-0.3.0-0bd617817e-0a82692fc8.zip/node_modules/random-seed/",
+          "packageDependencies": [
+            ["random-seed", "npm:0.3.0"],
+            ["json-stringify-safe", "npm:5.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["random-useragent", [
+        ["npm:0.5.0", {
+          "packageLocation": "./.yarn/cache/random-useragent-npm-0.5.0-68268ce16f-604a7fc63a.zip/node_modules/random-useragent/",
+          "packageDependencies": [
+            ["random-useragent", "npm:0.5.0"],
+            ["random-seed", "npm:0.3.0"]
           ],
           "linkType": "HARD",
         }]
@@ -6177,6 +6220,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tslib-npm-2.3.1-0e21e18015-de17a98d46.zip/node_modules/tslib/",
           "packageDependencies": [
             ["tslib", "npm:2.3.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:2.4.0", {
+          "packageLocation": "./.yarn/cache/tslib-npm-2.4.0-9cb6dc5030-8c4aa6a3c5.zip/node_modules/tslib/",
+          "packageDependencies": [
+            ["tslib", "npm:2.4.0"]
           ],
           "linkType": "HARD",
         }]
