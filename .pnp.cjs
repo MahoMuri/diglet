@@ -67,7 +67,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["libsodium-wrappers", "npm:0.7.10"],
             ["lint-staged", "npm:12.3.7"],
             ["lodash", "npm:4.17.21"],
-            ["luxon", "npm:2.3.1"],
+            ["luxon", "npm:2.5.2"],
             ["mongoose", "npm:6.2.11"],
             ["ms", "npm:2.1.3"],
             ["node-notifier", "npm:10.0.1"],
@@ -2051,7 +2051,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["libsodium-wrappers", "npm:0.7.10"],
             ["lint-staged", "npm:12.3.7"],
             ["lodash", "npm:4.17.21"],
-            ["luxon", "npm:2.3.1"],
+            ["luxon", "npm:2.5.2"],
             ["mongoose", "npm:6.2.11"],
             ["ms", "npm:2.1.3"],
             ["node-notifier", "npm:10.0.1"],
@@ -3989,10 +3989,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["luxon", [
-        ["npm:2.3.1", {
-          "packageLocation": "./.yarn/cache/luxon-npm-2.3.1-5e98793c95-ce5eec873a.zip/node_modules/luxon/",
+        ["npm:2.5.2", {
+          "packageLocation": "./.yarn/cache/luxon-npm-2.5.2-d4f55f89d0-d8b671ffd2.zip/node_modules/luxon/",
           "packageDependencies": [
-            ["luxon", "npm:2.3.1"]
+            ["luxon", "npm:2.5.2"]
           ],
           "linkType": "HARD",
         }]
